@@ -1,13 +1,13 @@
 let images = [
-    '../../../assets/squares/product_1.jpg',
-    '../../../assets/squares/product_2.jpg',
-    '../../../assets/squares/product_3.jpg',
-    '../../../assets/squares/product_4.jpg',
-    '../../../assets/squares/product_5.jpg',
-    '../../../assets/squares/product_6.jpg',
-    '../../../assets/squares/product_7.jpg',
-    '../../../assets/squares/product_8.jpg',
-    '../../../assets/squares/product_9.jpg'
+    '../../assets/squares/product_1.jpg',
+    '../../assets/squares/product_2.jpg',
+    '../../assets/squares/product_3.jpg',
+    '../../assets/squares/product_4.jpg',
+    '../../assets/squares/product_5.jpg',
+    '../../assets/squares/product_6.jpg',
+    '../../assets/squares/product_7.jpg',
+    '../../assets/squares/product_8.jpg',
+    '../../assets/squares/product_9.jpg'
 ];
 
 const slide = document.querySelector('#slider01 .slider-slide');
