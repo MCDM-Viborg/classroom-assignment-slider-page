@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+
+        <script src="./index.js" defer></script>
+        <script src="../../lib/prism.js" defer></script>
+        <link rel="stylesheet" href="../../lib/prism.css">
+        <link rel="stylesheet" href="../../lib/mcdm_carrousel.css">
+        <link rel="stylesheet" href="index.css">
+        <title>LABS.MCDM</title>
+    </head>
+<body>
+
+
+   <main>
+    
+    <div>
+    <header>
+        <h1><a href="/">LABS.MCDM</a></h1>
+        <h2>Slider # 01</h2>
+
+        <p>En basic billede skifter.</p>
+    </header>
+    <section class="container-for-slider">
+        <!-- 
+            En billede "Skifter" vi benytter src attributten og sætter vores billede vi den. 
+        
+            Så vi virkeligheden <img id="image-slide" src="billede_xx.jpg"  alt=""/>
+        -->
+        <div class="slider" id="slider01">
+
+        
+            <div class="slider-slides">
+                <img class="slider-slide" src=""  alt=""/>
+            </div>
+
+            <div class="slider-buttons">
+                <button onclick="previous()">Tilbage</button>
+                <button onclick="next()">Frem</button>
+            </div>
+
+        </div>
+    </section>
+    <section>
+        <h2>Information.</h2>
+        <p>Under opbygning..</p>
+        <a href="./README.md">README</a>
+    </section>
+
+    <section>
+        <h2>.html</h2>
+        <p>...</p>
+    </section>
+    
+    <section class="code">
+<pre><code class="language-HTML"><div class="slider" id="slider01">
+    <div class="slider-slides">
+        <img class="slider-slide" src=""  alt=""/>
+    </div>
+
+    <div class="slider-buttons">
+        <button onclick="previous()">Tilbage</button>
+        <button onclick="next()">Frem</button>
+    </div>
+
+</div>
+</code></pre>
+    </section>
+
+    <section>
+        <h2>.js</h2>
+        <p>...</p>
+    </section>
+
+    <section class="code">
+<pre><code class="language-javascript">
+let images = [
+    '/assets/squares/product_1.jpg',
+    '/assets/squares/product_2.jpg',
+    '/assets/squares/product_3.jpg',
+    '/assets/squares/product_4.jpg',
+    '/assets/squares/product_5.jpg',
+    '/assets/squares/product_6.jpg',
+    '/assets/squares/product_7.jpg',
+    '/assets/squares/product_8.jpg',
+    '/assets/squares/product_9.jpg'
+];
+
+const slide = document.querySelector('#slider01 img');
+let currentImageIndex = 0;
+
+const setActiveSlide = (index) => {
+
+    slide.src = images[index];
+    slide.alt = 'Produkt Index ' + index;
+
+};
+
+const next = () => {
+
+    if(currentImageIndex >= images.length - 1) {
+
+        currentImageIndex = 0;
+        
+    } else {
+
+        currentImageIndex += 1;
+
+    }
+
+    setActiveSlide(currentImageIndex);
+};
+
+const previous = () => {
+
+    if(currentImageIndex === 0) {
+
+        currentImageIndex = images.length - 1;
+
+    } else {
+
+        currentImageIndex -= 1;
+
+    }
+
+    setActiveSlide(currentImageIndex);
+};
+
+setActiveSlide(currentImageIndex);
+</code></pre>
+<section>
+    <h2>.css</h2>
+    <p>...</p>
+</section>
+<section class="code">
+</code>
+</section>
+
+<pre><code class="language-css">
+/* 
+
+    Vores Overordnet slider komponent.
+
+*/
+.slider {
+    padding : 20px;
+    margin: 10px;
+    border: 1px solid #000;
+}
+
+/* 
+
+    Vores Slider Buttons område.
+
+*/
+
+.slider .slider-buttons {
+
+    justify-content: space-between;
+    display: flex;
+    margin: 10px 0 0 0;
+}
+
+/* 
+
+    Vores slider´s slide.
+
+*/
+
+.slider .slider-slides .slider-slide{
+    
+    border-radius: 32px;
+    width : 100%;
+
+}
+</code></pre>
+    </section>
+</div>
+</main>
+
+<script>
+
+function escapeHtml(unsafe)
+{
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }
+
+    let edit = document.querySelector('.language-HTML');
+    let tmpl = escapeHtml(edit.innerHTML)
+    edit.innerHTML = tmpl;
+ 
+    </script>
+</body>    
+</html>

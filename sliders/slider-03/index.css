@@ -1,0 +1,62 @@
+/* 
+
+    Vores Overordnet slider komponent.
+
+*/
+.slider {
+    padding : 20px;
+    margin: 10px;
+    border: 1px solid #000;
+    
+}
+
+/* 
+
+    Vores Slider Buttons område.
+
+*/
+
+.slider-buttons {
+
+    margin: 10px 0 0 0;
+    justify-content: space-between;
+    display: flex;
+}
+
+/* 
+
+    Vores slider´s slide.
+
+*/
+
+.slider .slider-slides .slider-slide {
+    
+    display: none;
+    width : 100%;
+    animation-name: fade;
+    animation-duration: 1.0s;
+}
+
+/* 
+
+    Vores slider´s slide, når den er active/valgt 
+
+*/
+
+.slider .slider-slides .slider-slide.active {
+
+    border-radius: 32px;
+    display: block;
+
+}
+
+/*
+
+    Animation(er)
+
+*/
+
+@keyframes fade {
+    from {opacity: 0}
+    to {opacity: 1}
+}

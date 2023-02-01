@@ -8,7 +8,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    
+    background-color: white;
 }
 
 ul,
@@ -19,90 +19,11 @@ ol
     margin: 0;
 }
 
-/*
-
-    Lidt Generelt Styling til elementer i alle opgave i denne samling.
-
-*/
-
-header {
-
-}
-
 /* 
 
     Vores Overordnet slider komponent.
 
 */
-/* 
-
-    Vores Overordnet slider komponent.
-
-*/
-.slider {
-    padding : 20px;
-    margin: 10px;
-    border: 1px solid #000;
-}
-
-/* 
-
-    Vores Slider Buttons område.
-
-*/
-
-.slider-buttons {
-
-    margin: 10px 0 0 0;
-
-}
-
-/* 
-
-    Vores slider´s slide.
-
-*/
-
-.slider .slider-slides .slider-slide{
-    
-    display: none;
-
-}
-
-/* 
-
-    Vores slider´s slide, når den er active/valgt 
-
-*/
-
-.slider .slider-slides .slider-slide.active {
-
-    display: block;
-
-}
-
-/* 
-
-    Vores slider´s slide, img
-
-*/
-
-.slider .slider-slides .slider-slide img {
-    width : 100%;
-}
-
-
-/* 
-
-    Vores slider´s slide, img når slider er active.
-
-*/
-
-.slider .slider-slides .slider-slide.active img{
-
-    border-radius: 32px;
-
-}
 
 main {
     display: flex;
@@ -111,7 +32,7 @@ main {
 }
 
 section {
-    width: 728px;
+
 }
 
 pre[class*=language-] {
@@ -132,4 +53,10 @@ pre[class*=language-] {
 
 pre {
     border-radius: 20px;
+}
+
+@media screen and (min-width : 728px) {
+    section {
+        width: 728px;
+    }
 }

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    <script src="./lib/mcdm_carrousel.js" defer></script>
+    <script src="./lib/prism.js" defer></script>
+    <link rel="stylesheet" href="./lib/prism.css">
+    <link rel="stylesheet" href="./lib/mcdm_carrousel.css">
+    <title>LABS.MCDM</title>
+</head>
+<body>
+
+
+   <main>
+    
+    <div>
+    <header>
+        <h1>LABS.MCDM</h1>
+        <h2>Slider # 04</h2>
+    </header>
+    <section class="container-for-slider">
+        <!-- 
+            En billede "Skifter" vi benytter src attributten og sætter vores billede vi den. 
+        
+            Så vi virkeligheden <img id="image-slide" src="billede_xx.jpg"  alt=""/>
+        -->
+        <div class="slider" id="slider01">
+
+        
+            <div class="slider-slides">
+                    <div class="slider-slide">
+                        <img src="./assets/squares/product_1.jpg"  alt="Produkt 1"/>
+                    </div>
+
+                    <div class="slider-slide">
+                        <img src="./assets/squares/product_2.jpg"  alt="Produkt 2"/>
+                    </div>
+
+                    <div class="slider-slide">
+                        <img src="./assets/squares/product_3.jpg"  alt="Produkt 3"/>
+                    </div>
+
+                    <div class="slider-slide">
+                        <img src="./assets/squares/product_4.jpg"  alt="Produkt 4"/>
+                    </div>
+
+                    <div class="slider-slide">
+                        <img src="./assets/squares/product_5.jpg"  alt="Produkt 5"/>
+                    </div>
+
+                    <div class="slider-slide">
+                        <img src="./assets/squares/product_6.jpg"  alt="Produkt 6"/>
+                    </div>
+
+                    <div class="slider-slide">
+                        <img src="./assets/squares/product_7.jpg"  alt="Produkt 7"/>
+                    </div>
+
+                    <div class="slider-slide">
+                        <img src="./assets/squares/product_8.jpg"  alt="Produkt 8"/>
+                    </div>
+
+                    <div class="slider-slide">
+                        <img src="./assets/squares/product_9.jpg"  alt="Produkt 9"/>
+                    </div>
+
+                    <div class="slider-slide">
+                        <img src="./assets/squares/product_9.jpg"  alt="Produkt 9"/>
+                    </div>
+            </div>
+
+            <div class="slider-buttons">
+                <button data-direction="previous">Tilbage</button>
+                <button data-direction="next">Frem</button>
+            </div>
+
+        </div>
+    </section>
+    <section>
+        <h2>Opg. 04</h2>
+        <p>Her har vi vores Karrusel.</p>
+        <a href="./README.md">README</a>
+    </section>
+
+    <section>
+        <h2>Kildekode</h2>
+    </section>
+
+    <section class="code">
+            <pre>
+            <code class="language-javascript">
+    const slides = document.querySelectorAll('#slider01 .slider-slide');
+    const slidesLength = slides.length - 1;
+
+    const nextBtn = document.querySelector('[data-direction=next]');
+    const previousBtn = document.querySelector('[data-direction=previous]');
+
+    let currentImageIndex = 0;
+    let slideInterval = null;
+
+    const setActiveSlide = (index) => {
+        
+        slides.forEach( (slide) => {
+            slide.classList.remove('active');
+        });
+
+        slides[index].classList.add('active');
+
+    };
+
+    const previous = () => {
+
+        currentImageIndex = currentImageIndex === 0 ? slidesLength : currentImageIndex -= 1;
+        setActiveSlide(currentImageIndex);
+
+    };
+
+    const next = () => {
+
+        currentImageIndex = currentImageIndex >= slidesLength ? 0 : currentImageIndex += 1;
+        setActiveSlide(currentImageIndex);
+
+    };
+
+    if(nextBtn && previousBtn)
+    {
+
+        nextBtn.addEventListener('click', next);
+        previousBtn.addEventListener('click', previous);
+
+    }
+
+    /* Her starter vi maskineriet. */
+    setActiveSlide(currentImageIndex);
+    </code>
+    </pre>
+    </section>
+
+    <section>
+        <h2>Kildekode</h2>
+    </section>
+    
+    <section class="code">
+<pre><code class="language-HTML"><div class="slider" id="slider01">
+    <div class="slider-slides">
+            <div class="slider-slide">
+                <img src="./assets/squares/product_1.jpg"  alt="Produkt 1"/>
+            </div>
+
+            <div class="slider-slide">
+                <img src="./assets/squares/product_2.jpg"  alt="Produkt 2"/>
+            </div>
+
+            <div class="slider-slide">
+                <img src="./assets/squares/product_3.jpg"  alt="Produkt 3"/>
+            </div>
+
+            <div class="slider-slide">
+                <img src="./assets/squares/product_4.jpg"  alt="Produkt 4"/>
+            </div>
+
+            <div class="slider-slide">
+                <img src="./assets/squares/product_5.jpg"  alt="Produkt 5"/>
+            </div>
+
+            <div class="slider-slide">
+                <img src="./assets/squares/product_6.jpg"  alt="Produkt 6"/>
+            </div>
+
+            <div class="slider-slide">
+                <img src="./assets/squares/product_7.jpg"  alt="Produkt 7"/>
+            </div>
+
+            <div class="slider-slide">
+                <img src="./assets/squares/product_8.jpg"  alt="Produkt 8"/>
+            </div>
+
+            <div class="slider-slide">
+                <img src="./assets/squares/product_9.jpg"  alt="Produkt 9"/>
+            </div>
+
+            <div class="slider-slide">
+                <img src="./assets/squares/product_9.jpg"  alt="Produkt 9"/>
+            </div>
+    </div>
+
+    <div class="slider-buttons">
+        <button data-direction="previous">Tilbage</button>
+        <button data-direction="next">Frem</button>
+    </div>
+
+</div>
+</code></pre>
+    </section>
+</div>
+</main>
+
+<script>
+
+function escapeHtml(unsafe)
+{
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }
+
+    let edit = document.querySelector('.language-HTML');
+    let tmpl = escapeHtml(edit.innerHTML)
+    edit.innerHTML = tmpl;
+ 
+    </script>
+</body>    
+</html>
