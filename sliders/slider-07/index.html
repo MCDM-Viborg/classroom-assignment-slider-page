@@ -93,8 +93,15 @@
 
     <div class="slider-buttons">
         <button data-direction="previous">Tilbage</button>
-        <button data-playstyle="auto">AutoPlay ()</button>
+        <button data-playstyle="auto">AutoPlay (de-active)</button>
         <button data-direction="next">Frem</button>
+    </div>
+    <div class="slider-animation-switcher">
+        <form class="slider-animation-form" name="animationForm">
+            <input type="text" name="name" placeholder="animation: f.eks. bounce"/>
+            <button>skift!</button>
+        </form>
+        <div class="small-print"><a href="https://animate.style/" target="_blank">https://animate.style/</a></div>
     </div>
 
 </div>
@@ -114,9 +121,11 @@
     <section class="code">
 <pre><code class="language-javascript">
 const slidesContainer = document.querySelector('#slider01 .slider-slides');
+
 const nextBtn = document.querySelector('[data-direction=next]');
 const previousBtn = document.querySelector('[data-direction=previous]');
 const toggleAutoPlayBtn = document.querySelector('[data-playstyle=auto]');
+const animationInput = document.querySelector('[name=animationForm]');
 const display = document.querySelector('.slider-slides-display');
 
 let slides = null;
@@ -126,7 +135,7 @@ let isAutoPlaying = false;
 let slidesLength = 0;
 
 const init = (data) => {
-  
+    
     data.forEach((slideData) => {
 
         slidesContainer.insertAdjacentHTML('beforeend', slideTmpl(slideData));
@@ -141,10 +150,10 @@ const init = (data) => {
     
 };
 
-const slideTmpl = (slideData) => `<div class="slider-slide">
-    <div class="slider-slide-content">${slideData.description}</div>
-    <img src="${slideData.media.image}" alt="${slideData.media.text}"/>
-</div>`;
+const slideTmpl = (slideData) => `&lt;div class="slider-slide"&gt;
+    &lt;div class="slider-slide-content">${slideData.description}&lt;/div&gt;
+    &lt;img src="${slideData.media.image}" alt="${slideData.media.text}"/&gt;
+&lt;/div&gt;`;
 
 const setActiveSlide = (index) => {
     
@@ -202,12 +211,24 @@ const autoPlay = (playing) => {
     isAutoPlaying = playing;
 };
 
-if(nextBtn && previousBtn && toggleAutoPlayBtn)
+const changeAnimation = (e) => {
+
+    e.preventDefault();
+
+    const {name} = e.target.elements;
+
+    let sliderSlides = document.querySelectorAll('.slider-slide');
+    sliderSlides.forEach((s) => s.style.animationName = name.value)
+
+}
+
+if(nextBtn && previousBtn && toggleAutoPlayBtn && animationInput)
 {
 
     nextBtn.addEventListener('click', next);
     previousBtn.addEventListener('click', previous);
     toggleAutoPlayBtn.addEventListener('click', toggleAutoPlay);
+    animationInput.addEventListener('submit', changeAnimation);
 
     
 }
@@ -221,74 +242,24 @@ if(nextBtn && previousBtn && toggleAutoPlayBtn)
     arrayet for oven.
 
 */
-
 let data = [
     {
         'description' : 'Produkt 1 - Her er en beskrivelse af dette produkt.',
         'media' : {
             'text' : 'Produkt 1',
-            'image' : '../../assets/squares/product_1.jpg'
+            'image' : '/assets/squares/product_1.jpg'
         }
     },
     {
         'description' : 'Produkt 2 - Her er en beskrivelse af dette produkt.',
         'media' : {
             'text' : 'Produkt 2',
-            'image' : '../../assets/squares/product_2.jpg'
-        }
-    },
-    {
-        'description' : 'Produkt 3 - Her er en beskrivelse af dette produkt.',
-        'media' : {
-            'text' : 'Produkt 3',
-            'image' : '../../assets/squares/product_3.jpg'
-        }
-    },
-    {
-        'description' : 'Produkt 4 - Her er en beskrivelse af dette produkt.',
-        'media' : {
-            'text' : 'Produkt 4',
-            'image' : '../../assets/squares/product_4.jpg'
-        }
-    },
-    {
-        'description' : 'Produkt 5 - Her er en beskrivelse af dette produkt.',
-        'media' : {
-            'text' : 'Produkt 5',
-            'image' : '../../assets/squares/product_5.jpg'
-        }
-    },
-    {
-        'description' : 'Produkt 6 - Her er en beskrivelse af dette produkt.',
-        'media' : {
-            'text' : 'Produkt 6',
-            'image' : '../../assets/squares/product_6.jpg'
-        }
-    },
-    {
-        'description' : 'Produkt 7 - Her er en beskrivelse af dette produkt.',
-        'media' : {
-            'text' : 'Produkt 7',
-            'image' : '../../assets/squares/product_7.jpg'
-        }
-    },
-    {
-        'description' : 'Produkt 8 - Her er en beskrivelse af dette produkt.',
-        'media' : {
-            'text' : 'Produkt 8',
-            'image' : '../../assets/squares/product_8.jpg'
-        }
-    },
-    {
-        'description' : 'Produkt 9 - Her er en beskrivelse af dette produkt.',
-        'media' : {
-            'text' : 'Produkt 9',
-            'image' : '../../assets/squares/product_9.jpg'
+            'image' : '/assets/squares/product_2.jpg'
         }
     }
 ];
 
-init(data);
+init(data);         
 </code></pre>
 
 
@@ -307,8 +278,7 @@ init(data);
 </code>
 </section>
 
-<pre><code class="language-css">
-    /* 
+<pre><code class="language-css">/* 
 
     Vores Overordnet slider komponent.
 
@@ -345,7 +315,7 @@ init(data);
     display: none;
     user-select: none;
 
-    animation-name: fade;
+    animation-name: flip;
     animation-duration: 1.0s;
     
 }
@@ -430,7 +400,42 @@ init(data);
 
 }
 
+.slider-animation-switcher {
+    text-align: center;
+}
 
+.slider-animation-form {
+    width: 100%;
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+}
+.slider-animation-switcher input {
+    
+    width: 60%;
+    margin: 10px 0;
+    
+    padding: 5px 10px;
+
+}
+
+.slider-animation-switcher button {
+    
+    width: 35%;
+    padding: 5px;
+}
+
+.slider-animation-switcher .small-print a{
+    
+    text-decoration: none;
+    color: #000;
+    font-size: 13px;
+}
+
+.slider-animation-switcher .small-print a:hover{
+    text-decoration: underline;
+}
 @keyframes fade {
     from {opacity: 0}
     to {opacity: 1}
