@@ -119,48 +119,49 @@
 
     <section class="code">
 <pre><code class="language-javascript">
-    const slides = document.querySelectorAll('#slider01 .slider-slide');
+const slides = document.querySelectorAll('#slider01 .slider-slide');
+const slidesLength = slides.length - 1;
+
+const nextBtn = document.querySelector('[data-direction=next]');
+const previousBtn = document.querySelector('[data-direction=previous]');
+
+let currentImageIndex = 0;
+
+const setActiveSlide = (index) => {
     
-    const nextBtn = document.querySelector('[data-direction=next]');
-    const previousBtn = document.querySelector('[data-direction=previous]');
-    
-    let slidesLength = slides.length - 1;
-    let currentImageIndex = 0;
-    
-    const setActiveSlide = (index) => {
-        
-        slides.forEach( (slide) => {
-            slide.classList.remove('active');
-        });
-    
-        slides[index].classList.add('active');
-    
-    };
-    
-    const previous = () => {
-    
-        currentImageIndex = currentImageIndex === 0 ? slidesLength : currentImageIndex -= 1;
-        setActiveSlide(currentImageIndex);
-    
-    };
-    
-    const next = () => {
-    
-        currentImageIndex = currentImageIndex >= slidesLength ? 0 : currentImageIndex += 1;
-        setActiveSlide(currentImageIndex);
-    
-    };
-    
-    if(nextBtn && previousBtn)
-    {
-    
-        nextBtn.addEventListener('click', next);
-        previousBtn.addEventListener('click', previous);
-    
-    }
-    
-    
+    slides.forEach( (slide) => {
+        slide.classList.remove('active');
+    });
+
+    slides[index].classList.add('active');
+
+};
+
+const previous = () => {
+
+    currentImageIndex = currentImageIndex === 0 ? slidesLength : currentImageIndex -= 1;
     setActiveSlide(currentImageIndex);
+
+};
+
+const next = () => {
+
+    currentImageIndex = currentImageIndex >= slidesLength ? 0 : currentImageIndex += 1;
+    setActiveSlide(currentImageIndex);
+
+};
+
+if(nextBtn && previousBtn)
+{
+
+    nextBtn.addEventListener('click', next);
+    previousBtn.addEventListener('click', previous);
+
+}
+
+
+setActiveSlide(currentImageIndex);
+
 </code></pre>
 
 
@@ -180,7 +181,7 @@
 </section>
 
 <pre><code class="language-css">
-/* 
+    /* 
 
     Vores Overordnet slider komponent.
 
@@ -197,11 +198,11 @@
 
 */
 
-.slider .slider-buttons {
+.slider-buttons {
 
+    margin: 10px 0 0 0;
     justify-content: space-between;
     display: flex;
-    margin: 10px 0 0 0;
 }
 
 /* 
@@ -212,8 +213,21 @@
 
 .slider .slider-slides .slider-slide{
     
-    border-radius: 32px;
+    display: none;
     width : 100%;
+    
+}
+
+/* 
+
+    Vores slider´s slide, når den er active/valgt 
+
+*/
+
+.slider .slider-slides .slider-slide.active {
+
+    border-radius: 32px;
+    display: block;
 
 }
 </code></pre>

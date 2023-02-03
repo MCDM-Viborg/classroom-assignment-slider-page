@@ -79,6 +79,9 @@
 
     <section class="code">
 <pre><code class="language-javascript">
+    // Her har vi et "sæt"/"række"/array af billede-stier fra vores assets mappe.
+// f.eks. http://127.0.0.1:5500/common/assets/squares/product_5.jpg
+
 let images = [
     '../../assets/squares/product_1.jpg',
     '../../assets/squares/product_2.jpg',
@@ -106,7 +109,7 @@ const next = () => {
     if(currentImageIndex >= images.length - 1) {
 
         currentImageIndex = 0;
-        
+      
     } else {
 
         currentImageIndex += 1;
@@ -132,6 +135,7 @@ const previous = () => {
 };
 
 setActiveSlide(currentImageIndex);
+
 </code></pre>
 <section>
     <h2>.css</h2>

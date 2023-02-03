@@ -1,9 +1,11 @@
 const slides = document.querySelectorAll('#slider01 .slider-slide');
-const slidesLength = slides.length - 1;
 
 const nextBtn = document.querySelector('[data-direction=next]');
 const previousBtn = document.querySelector('[data-direction=previous]');
 
+const display = document.querySelector('.slider-slides-display');
+
+let slidesLength = slides.length - 1;
 let currentImageIndex = 0;
 
 const setActiveSlide = (index) => {
@@ -14,6 +16,7 @@ const setActiveSlide = (index) => {
 
     slides[index].classList.add('active');
 
+    display.textContent = `${index + 1} udaf ${slidesLength + 1}`;
 };
 
 const previous = () => {
@@ -40,3 +43,6 @@ if(nextBtn && previousBtn)
 
 
 setActiveSlide(currentImageIndex);
+
+
+

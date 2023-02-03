@@ -1,0 +1,127 @@
+/* 
+
+    Vores Overordnet slider komponent.
+
+*/
+.slider {
+    padding : 20px;
+    margin: 10px;
+    border: 1px solid #000;
+}
+
+/* 
+
+    Vores Slider Buttons område.
+
+*/
+
+.slider-buttons {
+
+    margin: 10px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+/* 
+
+    Vores slider´s slide.
+
+*/
+
+.slider .slider-slides .slider-slide{
+    
+    position: relative;
+    display: none;
+    user-select: none;
+
+    animation-name: fade;
+    animation-duration: 1.0s;
+    
+}
+
+/* 
+
+    Vores slider´s slide, når den er active/valgt 
+
+*/
+.slider .slider-slides .slider-slide.active {
+
+    display: flex;
+    justify-content: center;
+
+}
+
+/* 
+
+    Vores slider´s slide, img
+
+*/
+
+.slider .slider-slides .slider-slide img {
+    width : 100%;
+}
+
+/* 
+
+    Vores slider´s slide, img når slider er active.
+
+*/
+.slider .slider-slides .slider-slide.active img{
+
+    border-radius: 32px;
+
+}
+
+/* 
+
+    Vores slider´s slide, content område.
+
+*/
+.slider .slider-slides .slider-slide-content {
+
+    position: absolute;
+    
+    width: 90%; 
+
+    background-color: rgba(0, 0, 0, .4);
+    color: #fff;
+    border-radius: 16px;
+    text-align: center;
+    padding: 20px 20px;
+    bottom: 32px;
+    
+}
+
+/* 
+
+    Vores slider´s , display område.
+
+*/
+.slider .slider-slides .slider-slides-display
+{
+
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+    
+    width: 120px;
+    height: 32px;
+    
+    background-color: rgba(255, 255, 255, .4);
+    color: black;
+    
+    padding-left: 32px;
+    
+    border-radius: 32px 0 32px 0;
+    border-right: 2px solid rgba(255, 255, 255, .4);
+    border-bottom: 2px solid rgba(255, 255, 255, .4);
+
+}
+
+
+@keyframes fade {
+    from {opacity: 0}
+    to {opacity: 1}
+}

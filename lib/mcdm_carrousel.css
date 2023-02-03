@@ -37,7 +37,7 @@ section {
 
 pre[class*=language-] {
 
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .container-for-slider {
@@ -55,8 +55,8 @@ pre {
     border-radius: 20px;
 }
 
-@media screen and (min-width : 728px) {
+@media screen and (min-width : 1024px) {
     section {
-        width: 728px;
+        width: 1024px;
     }
 }

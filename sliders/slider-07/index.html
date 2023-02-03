@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+
+        <script src="./index.js" defer></script>
+        <script src="../../lib/prism.js" defer></script>
+        <link rel="stylesheet" href="../../lib/prism.css">
+        <link rel="stylesheet" href="../../lib/mcdm_carrousel.css">
+        <link rel="stylesheet" href="animate.min.css">
+        <link rel="stylesheet" href="index.css">
+        <title>LABS.MCDM</title>
+    </head>
+<body>
+
+
+   <main>
+    
+    <div>
+    <header>
+        <h1><a href="../../">LABS.MCDM</a></h1>
+        <h2>Slider # 06</h2>
+
+        <p>En basic billede skifter.</p>
+    </header>
+    <section class="container-for-slider">
+
+        <div class="slider" id="slider01">
+
+            <div class="slider-slides">
+                <div class="slider-slides-display">0 udaf 2</div>
+            </div>
+
+            <div class="slider-buttons">
+                <button data-direction="previous">Tilbage</button>
+                <button data-playstyle="auto">AutoPlay (de-active)</button>
+                <button data-direction="next">Frem</button>
+            </div>
+            <div class="slider-animation-switcher">
+                <form class="slider-animation-form" name="animationForm">
+                    <input type="text" name="name" placeholder="animation: f.eks. bounce"/>
+                    <button>skift!</button>
+                </form>
+                <div class="small-print"><a href="https://animate.style/" target="_blank">https://animate.style/</a></div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section>
+        <h2>Information.</h2>
+        <p>Under opbygning..</p>
+        <a href="./README.md">README</a>
+    </section>
+
+
+    <!-- 
+            HTML SECTION
+    -->
+
+
+    <section>
+        <h2>.html</h2>
+        <p>...</p>
+    </section>
+    
+    <section class="code">
+<pre><code class="language-HTML"><div class="slider" id="slider01">
+
+    <div class="slider-slides">
+        <div class="slider-slides-display">0 udaf 2</div>
+    </div>
+
+    <div class="slider-buttons">
+        <button data-direction="previous">Tilbage</button>
+        <button data-playstyle="auto">AutoPlay ()</button>
+        <button data-direction="next">Frem</button>
+    </div>
+
+</div>
+</code></pre>
+    </section>
+
+
+    <!-- 
+            JAVASCTIPT SECTION
+    -->
+
+    <section>
+        <h2>.js</h2>
+        <p>...</p>
+    </section>
+
+    <section class="code">
+<pre><code class="language-javascript">
+const slidesContainer = document.querySelector('#slider01 .slider-slides');
+const nextBtn = document.querySelector('[data-direction=next]');
+const previousBtn = document.querySelector('[data-direction=previous]');
+const toggleAutoPlayBtn = document.querySelector('[data-playstyle=auto]');
+const display = document.querySelector('.slider-slides-display');
+
+let slides = null;
+let currentImageIndex = 0;
+let slideInterval = null;
+let isAutoPlaying = false;
+let slidesLength = 0;
+
+const init = (data) => {
+  
+    data.forEach((slideData) => {
+
+        slidesContainer.insertAdjacentHTML('beforeend', slideTmpl(slideData));
+
+    });
+
+    slides = document.querySelectorAll('#slider01 .slider-slide');
+    slidesLength = data.length - 1;
+
+    setActiveSlide(currentImageIndex);
+    setAutoBtnText(isAutoPlaying);
+    
+};
+
+const slideTmpl = (slideData) => `<div class="slider-slide">
+    <div class="slider-slide-content">${slideData.description}</div>
+    <img src="${slideData.media.image}" alt="${slideData.media.text}"/>
+</div>`;
+
+const setActiveSlide = (index) => {
+    
+    slides.forEach( (slide) => {
+        slide.classList.remove('active');
+    });
+
+    autoPlay(isAutoPlaying);
+    
+    slides[index].classList.add('active');
+    display.textContent = `${index + 1} udaf ${slidesLength + 1}`;
+};
+
+const previous = (e) => {
+
+    currentImageIndex = currentImageIndex === 0 ? slidesLength : currentImageIndex -= 1;
+    setActiveSlide(currentImageIndex);
+
+    if(e && isAutoPlaying) {
+        toggleAutoPlay();
+    }
+};
+
+const next = (e) => {
+
+    currentImageIndex = currentImageIndex >= slidesLength ? 0 : currentImageIndex += 1;
+    setActiveSlide(currentImageIndex);
+
+    if(e && isAutoPlaying) {
+        toggleAutoPlay();
+    }
+};
+
+const setAutoBtnText = (isAutoPlaying) => {
+    toggleAutoPlayBtn.textContent = `AutoPlay ${isAutoPlaying ? '(playing)' : '(stopped)' }`;
+};
+
+const toggleAutoPlay = () => {
+
+    isAutoPlaying = !isAutoPlaying;
+    autoPlay(isAutoPlaying);
+    setAutoBtnText(isAutoPlaying);
+
+};
+
+const autoPlay = (playing) => {
+
+    clearInterval(slideInterval);
+
+    if(playing)
+    {
+        slideInterval = setInterval(next, 2000);   
+    }
+
+    isAutoPlaying = playing;
+};
+
+if(nextBtn && previousBtn && toggleAutoPlayBtn)
+{
+
+    nextBtn.addEventListener('click', next);
+    previousBtn.addEventListener('click', previous);
+    toggleAutoPlayBtn.addEventListener('click', toggleAutoPlay);
+
+    
+}
+
+
+/* 
+
+    Dette er hvad vi har brug for at starte.
+
+    Jeg har flyttet vores data array herned for at gøre det tydeligt, at vi fodre init med data, normalt vil jeg placere 
+    arrayet for oven.
+
+*/
+
+let data = [
+    {
+        'description' : 'Produkt 1 - Her er en beskrivelse af dette produkt.',
+        'media' : {
+            'text' : 'Produkt 1',
+            'image' : '../../assets/squares/product_1.jpg'
+        }
+    },
+    {
+        'description' : 'Produkt 2 - Her er en beskrivelse af dette produkt.',
+        'media' : {
+            'text' : 'Produkt 2',
+            'image' : '../../assets/squares/product_2.jpg'
+        }
+    },
+    {
+        'description' : 'Produkt 3 - Her er en beskrivelse af dette produkt.',
+        'media' : {
+            'text' : 'Produkt 3',
+            'image' : '../../assets/squares/product_3.jpg'
+        }
+    },
+    {
+        'description' : 'Produkt 4 - Her er en beskrivelse af dette produkt.',
+        'media' : {
+            'text' : 'Produkt 4',
+            'image' : '../../assets/squares/product_4.jpg'
+        }
+    },
+    {
+        'description' : 'Produkt 5 - Her er en beskrivelse af dette produkt.',
+        'media' : {
+            'text' : 'Produkt 5',
+            'image' : '../../assets/squares/product_5.jpg'
+        }
+    },
+    {
+        'description' : 'Produkt 6 - Her er en beskrivelse af dette produkt.',
+        'media' : {
+            'text' : 'Produkt 6',
+            'image' : '../../assets/squares/product_6.jpg'
+        }
+    },
+    {
+        'description' : 'Produkt 7 - Her er en beskrivelse af dette produkt.',
+        'media' : {
+            'text' : 'Produkt 7',
+            'image' : '../../assets/squares/product_7.jpg'
+        }
+    },
+    {
+        'description' : 'Produkt 8 - Her er en beskrivelse af dette produkt.',
+        'media' : {
+            'text' : 'Produkt 8',
+            'image' : '../../assets/squares/product_8.jpg'
+        }
+    },
+    {
+        'description' : 'Produkt 9 - Her er en beskrivelse af dette produkt.',
+        'media' : {
+            'text' : 'Produkt 9',
+            'image' : '../../assets/squares/product_9.jpg'
+        }
+    }
+];
+
+init(data);
+</code></pre>
+
+
+
+    <!-- 
+            STYLESHEET SECTION
+    -->
+
+
+
+<section>
+    <h2>.css</h2>
+    <p>...</p>
+</section>
+<section class="code">
+</code>
+</section>
+
+<pre><code class="language-css">
+    /* 
+
+    Vores Overordnet slider komponent.
+
+*/
+.slider {
+    padding : 20px;
+    margin: 10px;
+    border: 1px solid #000;
+}
+
+/* 
+
+    Vores Slider Buttons område.
+
+*/
+
+.slider-buttons {
+
+    margin: 10px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+/* 
+
+    Vores slider´s slide.
+
+*/
+
+.slider .slider-slides .slider-slide{
+    
+    position: relative;
+    display: none;
+    user-select: none;
+
+    animation-name: fade;
+    animation-duration: 1.0s;
+    
+}
+
+/* 
+
+    Vores slider´s slide, når den er active/valgt 
+
+*/
+.slider .slider-slides .slider-slide.active {
+
+    display: flex;
+    justify-content: center;
+
+}
+
+/* 
+
+    Vores slider´s slide, img
+
+*/
+
+.slider .slider-slides .slider-slide img {
+    width : 100%;
+}
+
+/* 
+
+    Vores slider´s slide, img når slider er active.
+
+*/
+.slider .slider-slides .slider-slide.active img{
+
+    border-radius: 32px;
+
+}
+
+/* 
+
+    Vores slider´s slide, content område.
+
+*/
+.slider .slider-slides .slider-slide-content {
+
+    position: absolute;
+    
+    width: 90%; 
+
+    background-color: rgba(0, 0, 0, .4);
+    color: #fff;
+    border-radius: 16px;
+    text-align: center;
+    padding: 20px 20px;
+    bottom: 32px;
+    
+}
+
+/* 
+
+    Vores slider´s , display område.
+
+*/
+.slider .slider-slides .slider-slides-display
+{
+
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+    
+    width: 120px;
+    height: 32px;
+    
+    background-color: rgba(255, 255, 255, .4);
+    color: black;
+    
+    padding-left: 32px;
+    
+    border-radius: 32px 0 32px 0;
+    border-right: 2px solid rgba(255, 255, 255, .4);
+    border-bottom: 2px solid rgba(255, 255, 255, .4);
+
+}
+
+
+@keyframes fade {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+</code></pre>
+    </section>
+</div>
+</main>
+
+
+
+
+
+<!-- 
+   TEMP JAVASCRIPT (skal refaktureres...asap..)
+-->
+<script>
+
+function escapeHtml(unsafe)
+{
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }
+
+    let edit = document.querySelector('.language-HTML');
+    let tmpl = escapeHtml(edit.innerHTML)
+    edit.innerHTML = tmpl;
+ 
+    </script>
+</body>    
+</html>

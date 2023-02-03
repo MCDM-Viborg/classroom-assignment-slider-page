@@ -53,9 +53,4 @@ const previous = () => {
     setActiveSlide(currentImageIndex);
 };
 
-
-
 setActiveSlide(currentImageIndex);
-
-
-
