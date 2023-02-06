@@ -1,4 +1,4 @@
-# Opgave 1.
+# Opgave 1. 
 
 Her har vi en helt simpel "billede-skifter".
 
